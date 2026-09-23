@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Liên hệ Đặc Sản Tây Nguyên để được tư vấn sản phẩm và định hướng đặt hàng."
+    />
+    <title>Liên hệ - Đặc Sản Tây Nguyên</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="trang-chu.html"
+          ><span class="logo-mark">TN</span
+          ><span
+            ><strong>Đặc Sản Tây Nguyên</strong
+            ><small>Tinh hoa núi rừng</small></span
+          ></a
+        >
+        <nav aria-label="Điều hướng chính">
+          <ul class="nav-list">
+            <li><a href="trang-chu.html">Trang chủ</a></li>
+            <li><a href="san-pham.html">Sản phẩm</a></li>
+            <li><a href="chi-tiet-san-pham.html">Chi tiết sản phẩm</a></li>
+            <li><a class="active" href="lien-he.html">Liên hệ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="page-banner">
+        <div class="container">
+          <p class="eyebrow">Kết nối cùng chúng tôi</p>
+          <h1>Liên hệ & đặt hàng</h1>
+          <p>Gửi thông tin để được tư vấn về sản phẩm và hướng dẫn đặt hàng.</p>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container contact-grid">
+          <div class="contact-info">
+            <p class="eyebrow">Thông tin liên hệ</p>
+            <h2>Chúng tôi sẵn sàng hỗ trợ</h2>
+            <p>
+              Hãy để lại thông tin và nội dung cần tư vấn. Đây là phiên bản giao
+              diện tĩnh, form dùng để mô phỏng luồng liên hệ.
+            </p>
+            <div class="contact-item">
+              <strong>Địa chỉ</strong><span>Tây Nguyên, Việt Nam</span>
+            </div>
+            <div class="contact-item">
+              <strong>Email</strong><span>lienhe@dacsantaynguyen.vn</span>
+            </div>
+            <div class="contact-item">
+              <strong>Điện thoại</strong><span>0123 456 789</span>
+            </div>
+          </div>
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label for="name">Họ và tên *</label
+              ><input
+                id="name"
+                name="name"
+                type="text"
+                required
+                placeholder="Nhập họ và tên"
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label
+              ><input
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder="example@email.com"
+              />
+            </div>
+            <div class="form-group">
+              <label for="phone">Số điện thoại *</label
+              ><input
+                id="phone"
+                name="phone"
+                type="tel"
+                required
+                placeholder="0123 456 789"
+              />
+            </div>
+            <div class="form-group">
+              <label for="product">Sản phẩm quan tâm *</label
+              ><select id="product" name="product" required>
+                <option value="">-- Chọn sản phẩm --</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Nội dung liên hệ *</label
+              ><textarea
+                id="message"
+                name="message"
+                rows="6"
+                required
+                placeholder="Nhập nội dung cần tư vấn..."
+              ></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Gửi yêu cầu</button>
+            <p class="status-message" id="formMessage" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <h2>Đặc Sản Tây Nguyên</h2>
+          <p>Tinh hoa núi rừng trong từng sản phẩm.</p>
+        </div>
+        <div>
+          <h3>Liên hệ</h3>
+          <p>Email: lienhe@dacsantaynguyen.vn<br />Điện thoại: 0123 456 789</p>
+        </div>
+      </div>
+      <div class="container copyright">Đặc Sản Tây Nguyên.</div>
+    </footer>
+    <script src="js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+{
+  "info": {
+    "name": "Đặc sản Tây Nguyên API",
+    "description": "Collection test API Express + MongoDB",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3001"
+    },
+    {
+      "key": "productId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health check",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/health"
+      }
+    },
+    {
+      "name": "Lấy tất cả sản phẩm",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/products"
+      }
+    },
+    {
+      "name": "Lấy sản phẩm theo ID",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/products/{{productId}}"
+      }
+    },
+    {
+      "name": "Thêm sản phẩm",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Sản phẩm test Postman\",\n  \"category\": \"Đặc sản\",\n  \"price\": 100000,\n  \"unit\": \"Sản phẩm\",\n  \"origin\": \"Đắk Lắk\",\n  \"stock\": 10,\n  \"description\": \"Dữ liệu tạo từ Postman\",\n  \"featured\": false\n}"
+        },
+        "url": "{{baseUrl}}/api/products"
+      }
+    },
+    {
+      "name": "Cập nhật sản phẩm",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Sản phẩm đã cập nhật\",\n  \"price\": 120000,\n  \"category\": \"Đặc sản\",\n  \"stock\": 20\n}"
+        },
+        "url": "{{baseUrl}}/api/products/{{productId}}"
+      }
+    },
+    {
+      "name": "Xóa sản phẩm",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/products/{{productId}}"
+      }
+    },
+    {
+      "name": "Đồng bộ products.json vào MongoDB",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/products/sync"
+      }
+    }
+  ]
+}

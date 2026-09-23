@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Danh sách đặc sản Tây Nguyên gồm cà phê, mật ong, mắc ca, tiêu, bơ sáp và thổ cẩm."
+    />
+    <title>Sản phẩm - Đặc Sản Tây Nguyên</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="trang-chu.html"
+          ><span class="logo-mark">TN</span
+          ><span
+            ><strong>Đặc Sản Tây Nguyên</strong
+            ><small>Tinh hoa núi rừng</small></span
+          ></a
+        >
+        <nav aria-label="Điều hướng chính">
+          <ul class="nav-list">
+            <li><a href="trang-chu.html">Trang chủ</a></li>
+            <li><a class="active" href="san-pham.html">Sản phẩm</a></li>
+            <li><a href="chi-tiet-san-pham.html">Chi tiết sản phẩm</a></li>
+            <li><a href="lien-he.html">Liên hệ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="page-banner">
+        <div class="container">
+          <p class="eyebrow">Danh mục đặc sản</p>
+          <h1>Sản phẩm Tây Nguyên</h1>
+          <p>
+            Khám phá những sản phẩm tiêu biểu mang hương vị và bản sắc của vùng
+            đất đại ngàn.
+          </p>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container products-layout">
+          <aside class="filter-box" aria-labelledby="filter-title">
+            <h2 id="filter-title">Bộ lọc</h2>
+            <div class="search-field">
+              <label for="productSearch">Tìm theo tên sản phẩm</label>
+              <input
+                type="search"
+                id="productSearch"
+                placeholder="Ví dụ: cà phê"
+                autocomplete="off"
+              />
+            </div>
+            <fieldset>
+              <legend>Danh mục</legend>
+              <label
+                ><input type="checkbox" name="category" value="Cà phê" /> Cà
+                phê</label
+              ><label
+                ><input type="checkbox" name="category" value="Mật ong" /> Mật
+                ong</label
+              ><label
+                ><input
+                  type="checkbox"
+                  name="category"
+                  value="Hạt dinh dưỡng"
+                />
+                Hạt dinh dưỡng</label
+              ><label
+                ><input type="checkbox" name="category" value="Nông sản" /> Nông
+                sản</label
+              ><label
+                ><input
+                  type="checkbox"
+                  name="category"
+                  value="Thủ công mỹ nghệ"
+                />
+                Thủ công mỹ nghệ</label
+              ><label
+                ><input type="checkbox" name="category" value="Gia vị" /> Gia
+                vị</label
+              ><label
+                ><input type="checkbox" name="category" value="Đặc sản khô" />
+                Đặc sản khô</label
+              >
+            </fieldset>
+            <button
+              class="btn btn-primary filter-button"
+              type="button"
+              id="filterButton"
+            >
+              Áp dụng bộ lọc
+            </button>
+          </aside>
+          <div>
+            <div class="results-bar">
+              <p id="productCount">
+                <strong>10 sản phẩm</strong> được giới thiệu
+              </p>
+            </div>
+            <div class="product-grid product-grid-six" id="productList"></div>
+            <p id="emptyMessage" class="status-message" hidden>
+              Không tìm thấy sản phẩm phù hợp.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <h2>Đặc Sản Tây Nguyên</h2>
+          <p>Tinh hoa núi rừng trong từng sản phẩm.</p>
+        </div>
+        <div>
+          <h3>Liên hệ</h3>
+          <p>Email: lienhe@dacsantaynguyen.vn<br />Điện thoại: 0123 456 789</p>
+        </div>
+      </div>
+      <div class="container copyright">Đặc Sản Tây Nguyên.</div>
+    </footer>
+    <script src="js/main.js"></script>
+  </body>
+</html>
