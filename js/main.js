@@ -8,138 +8,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const quickSearchPanel = document.querySelector("#quickSearchPanel");
   const quickSearchInput = document.querySelector("#quickSearchInput");
   const filterStorageKey = "dacsantaynguyen_product_filters";
-  const productCacheKey = "dacsantaynguyen_products_cache";
-  const fallbackProducts = [
-    {
-      id: 1,
-      name: "Cà phê Buôn Ma Thuột",
-      category: "Cà phê",
-      price: 180000,
-      unit: "500g",
-      origin: "Đắk Lắk",
-      image: "images/ca-phe.jpg",
-      stock: 50,
-      description:
-        "Cà phê rang xay đậm đà, hương thơm đặc trưng của vùng Buôn Ma Thuột.",
-      featured: true,
-    },
-    {
-      id: 2,
-      name: "Mật ong rừng Tây Nguyên",
-      category: "Mật ong",
-      price: 250000,
-      unit: "500ml",
-      origin: "Đắk Lắk",
-      image: "images/mat-ong.jpg",
-      stock: 35,
-      description:
-        "Mật ong có vị ngọt dịu và hương thơm tự nhiên từ hoa rừng Tây Nguyên.",
-      featured: true,
-    },
-    {
-      id: 3,
-      name: "Mắc ca Tây Nguyên",
-      category: "Hạt dinh dưỡng",
-      price: 220000,
-      unit: "500g",
-      origin: "Tây Nguyên",
-      image: "images/mac-ca.jpg",
-      stock: 40,
-      description:
-        "Hạt mắc ca béo bùi, thơm ngon, thích hợp dùng trực tiếp hoặc làm quà.",
-      featured: true,
-    },
-    {
-      id: 4,
-      name: "Tiêu Tây Nguyên",
-      category: "Gia vị",
-      price: 140000,
-      unit: "500g",
-      origin: "Tây Nguyên",
-      image: "images/tieu-tay-nguyen.jpg",
-      stock: 60,
-      description:
-        "Tiêu thơm cay, đậm vị, được trồng tại vùng đất bazan màu mỡ.",
-      featured: false,
-    },
-    {
-      id: 5,
-      name: "Bơ sáp Đắk Lắk",
-      category: "Nông sản",
-      price: 90000,
-      unit: "1kg",
-      origin: "Đắk Lắk",
-      image: "images/bo-sap.jpg",
-      stock: 25,
-      description:
-        "Bơ sáp dẻo, béo ngậy, thích hợp ăn trực tiếp hoặc chế biến món ăn.",
-      featured: true,
-    },
-    {
-      id: 6,
-      name: "Thổ cẩm Tây Nguyên",
-      category: "Thủ công mỹ nghệ",
-      price: 320000,
-      unit: "Sản phẩm",
-      origin: "Kon Tum",
-      image: "images/tho-cam-tay-nguyen.jpg",
-      stock: 15,
-      description:
-        "Sản phẩm thủ công mang hoa văn và nét văn hóa đặc trưng của đồng bào Tây Nguyên.",
-      featured: true,
-    },
-    {
-      id: 7,
-      name: "Cà phê chồn Tây Nguyên",
-      category: "Cà phê",
-      price: 450000,
-      unit: "250g",
-      origin: "Đắk Lắk",
-      image: "images/caphechon.jpg",
-      stock: 18,
-      description: "Cà phê đặc sản có hương thơm nổi bật và hậu vị đậm đà.",
-      featured: false,
-    },
-    {
-      id: 8,
-      name: "Hạt điều rang muối",
-      category: "Hạt dinh dưỡng",
-      price: 160000,
-      unit: "500g",
-      origin: "Đắk Lắk",
-      image: "images/hatdieurangmuoi.jpg",
-      stock: 30,
-      description:
-        "Hạt điều rang muối giòn bùi, phù hợp làm món ăn vặt hoặc quà tặng.",
-      featured: false,
-    },
-    {
-      id: 9,
-      name: "Khô bò một nắng",
-      category: "Đặc sản khô",
-      price: 280000,
-      unit: "500g",
-      origin: "Gia Lai",
-      image: "images/khobo.jpg",
-      stock: 20,
-      description:
-        "Thịt bò được phơi một nắng, giữ vị ngọt tự nhiên và thơm ngon.",
-      featured: true,
-    },
-    {
-      id: 10,
-      name: "Muối kiến vàng",
-      category: "Gia vị",
-      price: 90000,
-      unit: "200g",
-      origin: "Gia Lai",
-      image: "images/muoikienvang.jpg",
-      stock: 22,
-      description:
-        "Đặc sản gia vị độc đáo với vị chua, cay, mặn đặc trưng của Tây Nguyên.",
-      featured: false,
-    },
-  ];
 
   const resolveAssetUrl = (value) => {
     if (!value) return "";
@@ -150,26 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   };
 
-  const readCachedProducts = () => {
-    try {
-      const raw = localStorage.getItem(productCacheKey);
-      if (!raw) return [];
-      const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed : [];
-    } catch (error) {
-      return [];
-    }
-  };
-
-  const writeCachedProducts = (list) => {
-    try {
-      localStorage.setItem(productCacheKey, JSON.stringify(list));
-    } catch (error) {
-      console.warn("Không thể lưu cache sản phẩm:", error);
-    }
-  };
-
-  let products = readCachedProducts();
+  let products = [];
 
   try {
     const response = await fetch("/api/products", {
@@ -180,25 +29,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const jsonProducts = await response.json();
-    if (!Array.isArray(jsonProducts) || !jsonProducts.length) {
+    if (!Array.isArray(jsonProducts)) {
       throw new Error("API sản phẩm không hợp lệ");
     }
 
     products = jsonProducts;
-    writeCachedProducts(products);
   } catch (error) {
-    console.warn(
-      "Không thể nạp dữ liệu từ API, đang dùng dữ liệu dự phòng cục bộ:",
-      error,
-    );
-    products = readCachedProducts();
-    if (!products.length) {
-      products = fallbackProducts;
-      writeCachedProducts(products);
-    }
-    if (!products.length) {
-      console.error("Không có dữ liệu sản phẩm nào để hiển thị.");
-    }
+    console.error("Không thể nạp sản phẩm từ API:", error);
   }
 
   const loadSavedFilters = () => {
@@ -342,7 +179,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       Number(new URLSearchParams(window.location.search).get("id")) || 1;
     const product = products.find((item) => item.id === id) || products[0];
 
-    document.title = `Giỏ hàng - ${product.name} - Đặc Sản Tây Nguyên`;
+    if (!product) {
+      detailContainer.textContent = "Không tìm thấy sản phẩm từ API.";
+    } else {
+      document.title = `Giỏ hàng - ${product.name} - Đặc Sản Tây Nguyên`;
     detailContainer.innerHTML = `
       <div class="detail-image">
         <img src="${resolveAssetUrl(product.image)}" alt="${product.name}">
@@ -379,6 +219,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (message)
         message.textContent = `Đã thêm ${product.name} vào giỏ hàng (mô phỏng).`;
     });
+    }
   }
 
   const productSelect = document.querySelector("#product");

@@ -2,10 +2,11 @@
   "name": "dac-san-tay-nguyennn",
   "version": "1.0.0",
   "description": "Website tĩnh giới thiệu và mô phỏng việc tìm hiểu/đặt hàng các đặc sản Tây Nguyên.",
-  "main": "import.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "import": "node import.js"
   },
   "keywords": [],
   "author": "",

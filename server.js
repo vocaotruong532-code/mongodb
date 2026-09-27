@@ -1,6 +1,5 @@
 const express = require("express");
 const { MongoClient } = require("mongodb");
-const fs = require("fs");
 const path = require("path");
 
 const app = express();
@@ -152,17 +151,36 @@ app.delete(
 
 app.post("/api/products/sync", async (req, res, next) => {
   try {
-    const filePath = path.join(__dirname, "products.json");
-    const products = JSON.parse(fs.readFileSync(filePath, "utf8"));
+    const products = req.body;
     if (!Array.isArray(products)) {
       return res
         .status(400)
-        .json({ message: "products.json phải là một mảng" });
+        .json({ message: "Request phải chứa mảng sản phẩm JSON" });
+    }
+
+    const invalidProduct = products.find(
+      (product) =>
+        !product ||
+        !Number.isInteger(product.id) ||
+        product.id <= 0 ||
+        validateProduct(normalizeProduct(product)),
+    );
+    const productIds = products.map((product) => product.id);
+    if (invalidProduct || new Set(productIds).size !== productIds.length) {
+      return res.status(400).json({ message: "Dữ liệu sản phẩm không hợp lệ" });
     }
 
     const collection = await getProductsCollection();
     await collection.deleteMany({});
-    if (products.length) await collection.insertMany(products);
+    if (products.length) {
+      await collection.insertMany(
+        products.map((product) => {
+          const normalized = normalizeProduct(product);
+          delete normalized._id;
+          return normalized;
+        }),
+      );
+    }
     res.json({ success: true, count: products.length });
   } catch (error) {
     next(error);
